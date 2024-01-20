@@ -15,8 +15,8 @@ async function createItem() {
     TableName: tableName,
     Item: {
       // Define your item attributes
-      id: { N: "1" }, // Numeric attribute
-      name: { S: "John Doe" }, // String attribute
+      id: 1, // Numeric attribute
+      name: "John Doe", // String attribute
     },
   };
 
@@ -35,7 +35,7 @@ async function getItem() {
   const params = {
     TableName: tableName,
     Key: {
-      id: { N: "1" }, // Numeric attribute matching the primary key
+      id: 1, // Numeric attribute matching the primary key
     },
   };
 
@@ -54,14 +54,14 @@ async function updateItem() {
   const params = {
     TableName: tableName,
     Key: {
-      id: { N: "1" }, // Numeric attribute matching the primary key
+      id: 1, // Numeric attribute matching the primary key
     },
     UpdateExpression: "SET #name = :name", // Update the 'name' attribute
     ExpressionAttributeNames: {
       "#name": "name",
     },
     ExpressionAttributeValues: {
-      ":name": { S: "Updated Name" }, // New value for 'name'
+      ":name": "Updated Name", // New value for 'name'
     },
   };
 
@@ -80,7 +80,7 @@ async function deleteItem() {
   const params = {
     TableName: tableName,
     Key: {
-      id: { N: "1" }, // Numeric attribute matching the primary key
+      id: 1, // Numeric attribute matching the primary key
     },
   };
 
