@@ -93,3 +93,27 @@ async function deleteItem() {
     console.error("Error deleting item:", error);
   }
 }
+
+// Function to list items from DynamoDB
+async function listItems() {
+  // Define the parameters for querying items by partition key
+  const queryParams = {
+    TableName: 'YourTableName', // Replace 'YourTableName' with the actual table name
+    KeyConditionExpression: 'primaryKey = :pkValue', // Specify the partition key condition
+    ExpressionAttributeValues: {
+      ':pkValue': { N: '123' }, // Replace '123' with the actual partition key value
+    },
+  };
+
+// Create a QueryCommand
+  const queryCommand = new QueryCommand(queryParams);
+
+// Use the send method to execute the QueryCommand
+  dynamoDbClient.send(queryCommand)
+    .then(response => {
+      console.log('Items queried successfully:', response.Items);
+    })
+    .catch(error => {
+      console.error('Error querying items:', error);
+    });
+}
